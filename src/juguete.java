@@ -2,48 +2,39 @@ package src;
 
 import org.jetbrains.annotations.NotNull;
 
-public interface Juguete {
-        void setId(int id);
-        int getId();
-        Juguete clonar();
+import java.util.Scanner;
+
+interface Juguete {
+    default void setId(int id) {
+
     }
 
-    public class Main {
-        public static void main(String[] args) {
-            Menu menu = Menu.getInstance();
-            Scanner scanner = new Scanner(System.in);
+    default int getId() {
+        return 0;
+    }
 
-            while (true) {
-                menu.mostrarMenu();
-                int opcion = scanner.nextInt();
-                scanner.nextLine();  // Consumir la nueva línea después de la entrada numérica
-
-                switch (opcion) {
-                    case 1:
-                        // Crear juguete
-                        crearJuguete(menu, scanner);
-                        break;
-                    case 2:
-                        // Clonar juguete
-                        clonarJuguete(menu, scanner);
-                        break;
-                    case 3:
-                        // Eliminar juguete por ID
-                        eliminarJuguete(menu, scanner);
-                        break;
-                    case 4:
-                        // Ver juguetes actuales
-                        verJuguetes(menu);
-                        break;
-                    case 5:
-                        // Salir
-                        System.exit(0);
-                        break;
-                    default:
-                        System.out.println("Opción no válida.");
-                }
+    default juguete clonar(String relleno, String color) {
+        String materialExterior = null;
+        return new Implementacion(null, relleno, color) {
+            @Override
+            public Carrito realizarAccion() {
+                return null;
             }
-        }
+
+            @Override
+            public juguete clonar() {
+                return null;
+            }
+
+            @Override
+            public void clonar(String relleno, String color) {
+
+            }
+        };
+   }
+
+
+
 
         private static void crearJuguete(Menu menu, @NotNull Scanner scanner) {
             System.out.println("Seleccione el tipo de juguete a crear:");
@@ -51,7 +42,7 @@ public interface Juguete {
             System.out.println("2. Carrito");
 
             int opcionCrear = scanner.nextInt();
-            scanner.nextLine();  // Consumir la nueva línea después de la entrada numérica
+            scanner.nextLine();
 
             switch (opcionCrear) {
                 case 1:
@@ -67,7 +58,11 @@ public interface Juguete {
             }
         }
 
-        private static void crearPeluche(Menu menu, Scanner scanner) {
+    static void crearCarrito(Menu menu, Scanner scanner) {
+
+    }
+
+    private static void crearPeluche(Menu menu, Scanner scanner) {
             System.out.println("Ingrese el material exterior del peluche:");
             String materialExterior = scanner.nextLine();
 
@@ -78,4 +73,6 @@ public interface Juguete {
             String color = scanner.nextLine();
 
         }
-    }
+
+    void imprimir();
+}

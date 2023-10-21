@@ -1,12 +1,10 @@
 package src;
 
 
-import org.jetbrains.annotations.NotNull;
+public class NotNull {
+    private final ThreadLocal<@org.jetbrains.annotations.NotNull String> nombre = new ThreadLocal<String>();
 
-public class Persona {
-    private final ThreadLocal<@NotNull String> nombre = new ThreadLocal<String>();
-
-    public Persona(String nombre) {
+    public NotNull(String nombre) {
         this.nombre.set(nombre);
     }
 
@@ -15,6 +13,6 @@ public class Persona {
     }
 
     public static void main(String[] args) {
-        Persona persona = new Persona(null); // Esto generará una excepción de validación
+        NotNull persona = new NotNull(null); // Esto generará una excepción de validación
     }
 }

@@ -1,11 +1,12 @@
 package src;
 
- public class Peluche extends Juguete {
+ public abstract class Implementacion implements juguete {
     private final String materialExterior;
     private final String relleno;
     private final String color;
+     private long id;
 
-    public Peluche(String materialExterior, String relleno, String color) {
+     public Implementacion(String materialExterior, String relleno, String color) {
         this.materialExterior = materialExterior;
         this.relleno = relleno;
         this.color = color;
@@ -18,5 +19,14 @@ package src;
         System.out.println("Relleno: " + relleno);
         System.out.println("Color: " + color);
     }
-}
+
+     public void setId(int id) {
+         this.id = id;
+     }
+
+     @Override
+     public int getId() {
+         return (int) id;
+     }
+ }
 
